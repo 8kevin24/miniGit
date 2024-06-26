@@ -1,4 +1,4 @@
-package minigit;
+package miniGit;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;

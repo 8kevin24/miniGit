@@ -1,15 +1,16 @@
-package minigit;
+package miniGit;
 
 import java.io.File;
 
 
 /** Represents a MiniGit repository.
- *  @author TODO
+ *  @author Kevin Zhu
  */
 public class Repository {
-
     public static final File MINIGIT_PATH = new File(".minigit");
 
+    public Repository(){
+    }
     public void init() {
         // TODO
     }

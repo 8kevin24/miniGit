@@ -1,4 +1,4 @@
-package minigit;
+package miniGit;
 
 public class Main {
 
