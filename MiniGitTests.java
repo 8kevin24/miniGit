@@ -332,7 +332,7 @@ public class MiniGitTests {
     public static void runMiniGitCommand(String[] args) {
         try {
             OG_OUT.println(COMMAND_BASE + createCommand(args));
-            minigit.Main.main(args);
+            miniGit.Main.main(args);
         } catch (SecurityException ignored) {
         } catch (Exception e) {
             // Wrap IOException and other checked for poor implementations;

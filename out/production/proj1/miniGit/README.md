@@ -1,2 +1,1 @@
 "# miniGit" 
-"OOGA BOOGA"
