@@ -15,7 +15,7 @@ public class Commit implements Serializable {
     private Tree tree;
 
 
-    public Commit(String msg, Commit prev, Hashtable<String,String> stage){
+    public Commit(String msg, Commit prev, Hashtable<String,String> stage, Hashtable<String,String> removalStage){
         this.message=msg;
         this.prev=prev;
         this.timestamp= new Date();
@@ -26,6 +26,12 @@ public class Commit implements Serializable {
             for(String value : stage.values()) {
                 this.tree.putBlob(new Blob(Utils.sha1(value), value));
             }
+        }
+        if (removalStage!=null){
+            for(String value : removalStage.values()) {
+                this.tree.removeBlob(new Blob(Utils.sha1(value), value));
+            }
+
         }
 
     }
@@ -43,6 +49,9 @@ public class Commit implements Serializable {
 
     public Tree getTree(){
         return this.tree;
+    }
+    public String getInfo(){
+        return this.getDate()+";"+this.getMessage();
     }
     public class Blob{
         private String hash;
@@ -72,9 +81,17 @@ public class Commit implements Serializable {
              blobs.put(b.getHash(),b);
 
          }
+
+         public void removeBlob(Blob b){
+            blobs.remove(b.getHash());
+         }
          public void putTree(Tree t){
              subtrees.put(Utils.sha1(t),t);
          }
 
+         public boolean contains(String str){
+            Blob b= new Blob(str,Utils.sha1(str));
+            return this.blobs.contains(b)||this.subtrees.contains(b);
+         }
     }
 }
